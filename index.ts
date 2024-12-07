@@ -761,7 +761,7 @@ class Server {
       if (url.pathname === '/url' && url.searchParams.has('url')) {
         try {
           const instagramUrl = url.searchParams.get('url')!;
-          const reelCode = await InstagramService.extractReelCode(instagramUrl);
+          const reelCode = await InstagramService.extractReelCode(instagramUrl.replace('/reels/', '/reel/'));
           const result = await InstagramService.fetchInstagramReel(reelCode);
 
           // Download and send the video as a blob
@@ -809,7 +809,9 @@ class Server {
         return this.sendError('URL is required', 400);
       }
 
-      const reelCode = await InstagramService.extractReelCode(data.url);
+      const reelCode = await InstagramService.extractReelCode(
+        data.url.replace('/reels/', '/reel/')
+      );
       const result = await InstagramService.fetchInstagramReel(reelCode);
 
       return new Response(
