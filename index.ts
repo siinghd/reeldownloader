@@ -44,7 +44,6 @@ interface InstagramServiceConfig {
   dumpPath: string;
 }
 
-// Your existing HTML_TEMPLATE constant here
 const HTML_TEMPLATE = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -216,7 +215,7 @@ class InstagramService {
     'sec-fetch-site': 'none',
     'sec-fetch-user': '?1',
     'upgrade-insecure-requests': '1',
-    cookie: 'replace with your own cookie',
+    cookie: 'Your own here (use browser dev tools to get this)',
   };
   private static readonly HEADERSGQL = {
     accept: '*/*',
@@ -236,7 +235,7 @@ class InstagramService {
     'x-ig-app-id': '936619743392459',
     Referer: 'https://www.instagram.com/reel/',
     Origin: 'https://www.instagram.com',
-    cookie: 'replace with your own cookie',
+    cookie: 'Your own here (use browser dev tools to get this)',
   };
   public static configure(config: Partial<InstagramServiceConfig>): void {
     this.config = { ...this.config, ...config };
@@ -776,7 +775,7 @@ class Server {
           );
         }
       }
-      
+
       switch (url.pathname) {
         case '/':
           return this.handleRoot();
